@@ -1,10 +1,10 @@
 [
   {
     "repo": "https://github.com/cubiq/ComfyUI_essentials",
-    "commit": "5f1fc52"
+    "commit": "f320ada"
   },
   {
     "repo": "https://github.com/comfyanonymous/ComfyUI_TensorRT",
-    "commit": "a9a6923"
+    "commit": "5bcc3f1"
   }
 ]

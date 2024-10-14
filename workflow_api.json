@@ -3,8 +3,8 @@
     "inputs": {
       "text": "",
       "clip": [
-        "252",
-        1
+        "280",
+        0
       ]
     },
     "class_type": "CLIPTextEncode",
@@ -12,25 +12,12 @@
       "title": "CLIP Text Encode (Prompt)"
     }
   },
-  "13": {
-    "inputs": {
-      "shift": 3,
-      "model": [
-        "279",
-        0
-      ]
-    },
-    "class_type": "ModelSamplingSD3",
-    "_meta": {
-      "title": "ModelSamplingSD3"
-    }
-  },
   "71": {
     "inputs": {
       "text": "bad quality, poor quality, doll, disfigured, jpg, toy, bad anatomy, missing limbs, missing fingers, 3d, cgi",
       "clip": [
-        "252",
-        1
+        "280",
+        0
       ]
     },
     "class_type": "CLIPTextEncode",
@@ -56,8 +43,8 @@
         0
       ],
       "vae": [
-        "252",
-        2
+        "284",
+        0
       ]
     },
     "class_type": "VAEDecode",
@@ -65,25 +52,16 @@
       "title": "VAE Decode"
     }
   },
-  "252": {
-    "inputs": {
-      "ckpt_name": "sd3_medium_incl_clips_t5xxlfp8.safetensors"
-    },
-    "class_type": "CheckpointLoaderSimple",
-    "_meta": {
-      "title": "Load Checkpoint"
-    }
-  },
   "271": {
     "inputs": {
       "seed": 865082229759995,
       "steps": 28,
       "cfg": 4.5,
-      "sampler_name": "dpmpp_2m",
-      "scheduler": "sgm_uniform",
-      "denoise": 1.0,
+      "sampler_name": "euler",
+      "scheduler": "simple",
+      "denoise": 1,
       "model": [
-        "13",
+        "281",
         0
       ],
       "positive": [
@@ -95,7 +73,7 @@
         0
       ],
       "latent_image": [
-        "278",
+        "135",
         0
       ]
     },
@@ -106,7 +84,7 @@
   },
   "273": {
     "inputs": {
-      "filename_prefix": "R8_SD3",
+      "filename_prefix": "R8_FLUX",
       "images": [
         "231",
         0
@@ -130,58 +108,50 @@
       "title": "🔧 SD3 Negative Conditioning"
     }
   },
-  "275": {
-    "inputs": {
-      "image": "example.png",
-      "upload": "image"
-    },
-    "class_type": "LoadImage",
-    "_meta": {
-      "title": "Load Image"
-    }
-  },
-  "277": {
-    "inputs": {
-      "width": 1024,
-      "height": 1024,
-      "interpolation": "lanczos",
-      "method": "keep proportion",
-      "condition": "always",
-      "multiple_of": 64,
-      "image": [
-        "275",
-        0
-      ]
-    },
-    "class_type": "ImageResize+",
-    "_meta": {
-      "title": "🔧 Image Resize"
-    }
-  },
-  "278": {
-    "inputs": {
-      "pixels": [
-        "277",
-        0
-      ],
-      "vae": [
-        "252",
-        2
-      ]
-    },
-    "class_type": "VAEEncode",
-    "_meta": {
-      "title": "VAE Encode"
-    }
-  },
   "279": {
     "inputs": {
       "unet_name": "sd3_medium_DYN_A100-b-1-1-1-h-512-1536-1024-w-512-1536-1024.engine",
-      "model_type": "sd3"
+      "model_type": "flux"
     },
     "class_type": "TensorRTLoader",
     "_meta": {
       "title": "TensorRT Loader"
+    }
+  },
+  "280": {
+    "inputs": {
+      "clip_name1": "clip_l.safetensors",
+      "clip_name2": "t5xxl_fp8_e4m3fn.safetensors",
+      "type": "flux"
+    },
+    "class_type": "DualCLIPLoader",
+    "_meta": {
+      "title": "DualCLIPLoader"
+    }
+  },
+  "281": {
+    "inputs": {
+      "max_shift": 1.15,
+      "base_shift": 0.5,
+      "width": 1024,
+      "height": 1024,
+      "model": [
+        "279",
+        0
+      ]
+    },
+    "class_type": "ModelSamplingFlux",
+    "_meta": {
+      "title": "ModelSamplingFlux"
+    }
+  },
+  "284": {
+    "inputs": {
+      "vae_name": "ae.safetensors"
+    },
+    "class_type": "VAELoader",
+    "_meta": {
+      "title": "Load VAE"
     }
   }
 }
